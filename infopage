@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT Coffee | It's Game Time!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0C2340;
+    --navy-light: #16335c;
+    --green: #286114;
+    --green-light: #3a8a1c;
+    --white: #FFFFFF;
+    --cream: #F4EFE6;
+    --mvp: #FF751F;
+    --champion: #004AAD;
+    --varsity: #BF1D1D;
+    --captain: #286114;
+    --ink: #1c1c1c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Work Sans', sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--navy);
+    border-bottom: 3px solid var(--green);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    text-decoration: none;
+  }
+  .nav-logo img { height: 34px; width: auto; }
+  nav .nav-links {
+    display: flex;
+    gap: 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  nav .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.85;
+  }
+  nav .nav-links a:hover { opacity: 1; text-decoration: underline; }
+  nav .nav-cta {
+    background: var(--green);
+    color: var(--white) !important;
+    padding: 9px 18px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none !important;
+    opacity: 1 !important;
+  }
+  @media (max-width: 640px) {
+    nav .nav-links { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 72px 0 88px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 2px, transparent 2px, transparent 14px);
+    pointer-events: none;
+  }
+  .hero-logo {
+    width: 170px;
+    height: auto;
+    margin: 0 auto 28px;
+    display: block;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    color: var(--white);
+    max-width: 780px;
+    margin: 0 auto 18px;
+    position: relative;
+  }
+  .hero h1 span { color: var(--green-light); }
+  .hero p.sub {
+    max-width: 560px;
+    margin: 0 auto 34px;
+    font-size: 1.15rem;
+    color: #d9e0ea;
+    position: relative;
+  }
+  .btn-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+    font-family: 'Work Sans', sans-serif;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    background: var(--green);
+    color: var(--white);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section { padding: 76px 0; }
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 48px;
+  }
+  .section-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .section-header p {
+    font-size: 1.05rem;
+    color: #4a4a4a;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .patch-card {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 32px;
+    border: 3px dashed var(--green-light);
+    position: relative;
+  }
+  .patch-card h3 {
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  .patch-card p { color: #d9e0ea; font-size: 0.98rem; }
+  .about-copy h2 { color: var(--navy); margin-bottom: 18px; font-size: clamp(1.8rem, 4vw, 2.4rem); }
+  .about-copy p { margin-bottom: 16px; color: #333; font-size: 1.05rem; }
+  .about-copy .payout-line {
+    display: inline-block;
+    background: var(--green);
+    color: var(--white);
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    margin-top: 6px;
+  }
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- LINEUP ---------- */
+  .lineup-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .roast-card {
+    background: var(--white);
+    border: 1px solid #e4e0d6;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    perspective: 1200px;
+    height: 340px;
+  }
+  .roast-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(.4,.2,.2,1);
+    transform-style: preserve-3d;
+  }
+  .roast-card.flipped .roast-inner { transform: rotateY(180deg); }
+  .roast-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .roast-face.front { background: var(--white); }
+  .roast-face img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    padding: 14px 14px 0;
+  }
+  .roast-face .label {
+    padding: 10px 10px 16px;
+  }
+  .roast-face .label .roast-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+  }
+  .roast-face .label .roast-type {
+    font-size: 0.85rem;
+    color: #777;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .roast-face .tap-hint {
+    font-size: 0.78rem;
+    color: #999;
+    margin-top: 6px;
+  }
+  .roast-face.back {
+    transform: rotateY(180deg);
+    color: var(--white);
+    padding: 26px 22px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .roast-face.back .roast-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+  .roast-face.back p { font-size: 0.92rem; opacity: 0.95; }
+  .roast-card[data-roast="mvp"] .roast-face.back { background: var(--mvp); }
+  .roast-card[data-roast="champion"] .roast-face.back { background: var(--champion); }
+  .roast-card[data-roast="varsity"] .roast-face.back { background: var(--varsity); }
+  .roast-card[data-roast="captain"] .roast-face.back { background: var(--captain); }
+  .roast-card[data-roast="mvp"] .roast-face.front { border-top: 5px solid var(--mvp); }
+  .roast-card[data-roast="champion"] .roast-face.front { border-top: 5px solid var(--champion); }
+  .roast-card[data-roast="varsity"] .roast-face.front { border-top: 5px solid var(--varsity); }
+  .roast-card[data-roast="captain"] .roast-face.front { border-top: 5px solid var(--captain); }
+
+  @media (max-width: 860px) {
+    .lineup-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .lineup-grid { grid-template-columns: 1fr; }
+    .roast-card { height: 320px; max-width: 320px; margin: 0 auto; }
+  }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how { background: var(--navy); color: var(--white); }
+  .how .section-header h2 { color: var(--white); }
+  .how .section-header p { color: #c8d2e0; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .step {
+    background: var(--navy-light);
+    border: 1px dashed rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 28px 24px;
+  }
+  .step .num {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.2rem;
+    color: var(--green-light);
+    margin-bottom: 10px;
+  }
+  .step h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--white); }
+  .step p { font-size: 0.95rem; color: #cfd8e6; }
+  @media (max-width: 800px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact { background: var(--cream); }
+  .contact-box {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid #e4e0d6;
+    padding: 40px;
+    text-align: center;
+  }
+  .toggle-row {
+    display: inline-flex;
+    background: #eee7d9;
+    border-radius: 30px;
+    padding: 4px;
+    margin-bottom: 26px;
+  }
+  .toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 10px 22px;
+    border-radius: 26px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: var(--navy);
+    font-family: 'Work Sans', sans-serif;
+  }
+  .toggle-btn.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .contact-message { min-height: 60px; margin-bottom: 24px; }
+  .contact-message p { color: #444; font-size: 1.02rem; }
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .contact-email {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .contact-phone { color: #555; font-size: 0.95rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--navy);
+    color: #a9b6ca;
+    text-align: center;
+    padding: 28px 0;
+    font-size: 0.85rem;
+    border-top: 3px solid var(--green);
+  }
+  footer strong { color: var(--white); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="nav-logo">
+      <img src="assets/logo.png" alt="GT Coffee logo">
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#lineup">Lineup</a>
+      <a href="#how">How It Works</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get In Touch</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <img src="assets/logo.png" alt="GT Coffee" class="hero-logo">
+    <h1>It's Game <span>Time!</span></h1>
+    <p class="sub">GT Coffee is a coffee fundraiser your school, team, or club can run to raise real money, one bag at a time.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn btn-primary">Start a Fundraiser</a>
+      <a href="#lineup" class="btn btn-outline">See the Lineup</a>
+    </div>
+  </div>
+</header>
+
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <h2>Huddle up, this one's easy.</h2>
+      <p>GT Coffee gives your program a coffee fundraiser people actually want to buy into. Your group shares the word, your community orders through us, and we handle the roasting and shipping.</p>
+      <p>No selling out of a trunk. No leftover boxes in the gym. Just a simple program built for teams, bands, clubs, and everyone in between.</p>
+      <span class="payout-line">Your program earns a flat payout on every bag sold</span>
+    </div>
+    <div class="patch-card">
+      <h3>Built for every roster</h3>
+      <p>Sports teams, cheer squads, bands, clubs, classrooms. If your group has a goal to hit, GT Coffee is built to help you get there. Reach out and we'll get your program set up.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lineup">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>Meet the Lineup</h2>
+      <p>Four roasts, each with its own spot in the rotation. Tap a card to see what makes it different.</p>
+    </div>
+    <div class="lineup-grid">
+
+      <div class="roast-card" data-roast="mvp">
+        <div class="roast-inner">
+          <div class="roast-face front">
+            <img src="assets/mvp.png" alt="GT Coffee MVP bag">
+            <div class="label">
+              <div class="roast-name">MVP</div>
+              <div class="roast-type">Medium Dark</div>
+              <div class="tap-hint">Tap to learn more</div>
+            </div>
+          </div>
+          <div class="roast-face back">
+            <div>
+              <div class="roast-name">MVP</div>
+              <p>Bold and full bodied. The everyday roast that shows up and gets it done, every game day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roast-card" data-roast="champion">
+        <div class="roast-inner">
+          <div class="roast-face front">
+            <img src="assets/champion.png" alt="GT Coffee Champion bag">
+            <div class="label">
+              <div class="roast-name">Champion</div>
+              <div class="roast-type">Espresso</div>
+              <div class="tap-hint">Tap to learn more</div>
+            </div>
+          </div>
+          <div class="roast-face back">
+            <div>
+              <div class="roast-name">Champion</div>
+              <p>Rich and concentrated. Built for espresso drinks and anyone who takes their coffee seriously.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roast-card" data-roast="varsity">
+        <div class="roast-inner">
+          <div class="roast-face front">
+            <img src="assets/varsity.png" alt="GT Coffee Varsity bag">
+            <div class="label">
+              <div class="roast-name">Varsity</div>
+              <div class="roast-type">Light Medium</div>
+              <div class="tap-hint">Tap to learn more</div>
+            </div>
+          </div>
+          <div class="roast-face back">
+            <div>
+              <div class="roast-name">Varsity</div>
+              <p>Bright and smooth. A lighter roast for the crowd that likes their coffee clean and easy drinking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roast-card" data-roast="captain">
+        <div class="roast-inner">
+          <div class="roast-face front">
+            <img src="assets/captain.png" alt="GT Coffee Captain bag">
+            <div class="label">
+              <div class="roast-name">Captain</div>
+              <div class="roast-type">Medium</div>
+              <div class="tap-hint">Tap to learn more</div>
+            </div>
+          </div>
+          <div class="roast-face back">
+            <div>
+              <div class="roast-name">Captain</div>
+              <p>Balanced and dependable. The roast that leads the lineup and works for just about everyone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section how" id="how">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>How It Works</h2>
+      <p>Three steps between you and a fundraiser your community can get behind.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Sign Up Your Group</h3>
+        <p>Reach out below and tell us about your school, team, or club. We'll get your program set up with everything it needs.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Rally Your Community</h3>
+        <p>Share your link with family, friends, and neighbors. They order straight from us, no cash or inventory for you to manage.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Cash In the Win</h3>
+        <p>We roast, pack, and ship every order. Your program earns its payout on every bag sold, tracked from start to finish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>Let's Get Your Program Started</h2>
+      <p>Tell us a little about what you need and we'll take it from there.</p>
+    </div>
+    <div class="contact-box">
+      <div class="toggle-row">
+        <button class="toggle-btn active" data-mode="school">I run a school or team</button>
+        <button class="toggle-btn" data-mode="general">I just have a question</button>
+      </div>
+      <div class="contact-message">
+        <p id="contact-text">Tell us your program's name, group size, and rough timeline, and we'll help you kick off your fundraiser.</p>
+      </div>
+      <div class="contact-actions">
+        <a href="mailto:gtcoffee.fundraising@gmail.com" id="contact-email-btn" class="btn btn-primary">Email GT Coffee</a>
+        <span class="contact-email">gtcoffee.fundraising@gmail.com</span>
+        <span class="contact-phone">423-316-4155</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>GT Coffee</strong> &middot; It's Game Time!</p>
+  </div>
+</footer>
+
+<script>
+  // Flip cards on tap/click
+  document.querySelectorAll('.roast-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      card.classList.toggle('flipped');
+    });
+  });
+
+  // Contact toggle
+  var schoolMsg = "Tell us your program's name, group size, and rough timeline, and we'll help you kick off your fundraiser.";
+  var generalMsg = "Have a question about GT Coffee, an order, or anything else? Send us a note and we'll get back to you.";
+  var schoolSubject = "New%20Fundraiser%20Inquiry";
+  var generalSubject = "General%20Question";
+
+  var buttons = document.querySelectorAll('.toggle-btn');
+  var textEl = document.getElementById('contact-text');
+  var emailBtn = document.getElementById('contact-email-btn');
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var mode = btn.getAttribute('data-mode');
+      if (mode === 'school') {
+        textEl.textContent = schoolMsg;
+        emailBtn.href = 'mailto:gtcoffee.fundraising@gmail.com?subject=' + schoolSubject;
+      } else {
+        textEl.textContent = generalMsg;
+        emailBtn.href = 'mailto:gtcoffee.fundraising@gmail.com?subject=' + generalSubject;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
